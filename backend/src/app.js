@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const routes = require("./routes");
+const { errors } = require('celebrate');
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,6 @@ app.use(cors({ origin: "http://localhost:3000" }));
 
 /* END MIDDLEWARE  */
 app.use(routes);
-app.listen(app.get("port"), () => {
-  console.log(`server on port ${app.get("port")}`);
-});
+app.use(errors());
+
+module.exports = app;
